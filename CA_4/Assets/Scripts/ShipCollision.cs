@@ -7,20 +7,24 @@ public class ShipCollision : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip crashSound;
     public AudioClip dragSound;
+    public float collisionHpLoss = 10;
+    public float dragHpLoss = 5;
 
+    public float shipHp = 100f;
+    private bool isCrashing = false;
     private bool isDragging = false;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger enter - not crashable");
-
         if (other.gameObject.tag != "Crashable") return;
+        isCrashing = true;
 
         // Play sound
         audioSource.PlayOneShot(crashSound);
         Invoke("DragStarts", 1.8f);
 
         // Subtract HP
+        ReduceHp(collisionHpLoss);
 
         // I tried adding an impulse in the opposite direction, but it doesn't seem to work, perhaps because of the character controller?
         //Vector3 bounceDirecton = other.gameObject.transform.position - gameObject.transform.position;
@@ -32,14 +36,19 @@ public class ShipCollision : MonoBehaviour
     {
         if (other.gameObject.tag != "Crashable") return;
 
+        // Subtract HP a bit
+        if (isDragging) ReduceHp(dragHpLoss * Time.deltaTime);
+
+        // Start/restart audio if needed
         if (!audioSource.isPlaying) audioSource.PlayOneShot(dragSound);
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag != "Crashable") return;
+        isCrashing = false;
 
-        if(isDragging)
+        if (isDragging)
         {
             isDragging = false;
             audioSource.Stop(); // only drag sound should be interrupted
@@ -49,12 +58,26 @@ public class ShipCollision : MonoBehaviour
 
     void DragStarts()
     {
+        if (!isCrashing) return; // in case it gets called but collision is over
         isDragging = true;
 
         // Stop audio so drag sfx is activated in OnTriggerStay
         audioSource.Stop();
+    }
 
-        // Start subtracting HP slowly
+    void ReduceHp(float amount)
+    {
+        shipHp -= amount;
+        if (shipHp <= 0)
+        {
+            shipHp = 0;
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 
     //void OnCollisionEnter(Collision other)

@@ -410,6 +410,9 @@ MonoBehaviour:
   audioSource: {fileID: 45002723}
   crashSound: {fileID: 8300000, guid: bb923f5d15fde0f44b458400fd52fb7d, type: 3}
   dragSound: {fileID: 8300000, guid: f418be018ff61d04e9f523e1192c4633, type: 3}
+  collisionHpLoss: 10
+  dragHpLoss: 5
+  shipHp: 100
 --- !u!136 &179547562
 CapsuleCollider:
   m_ObjectHideFlags: 0
