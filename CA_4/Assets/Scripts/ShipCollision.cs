@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipCollision : MonoBehaviour
 {
@@ -9,10 +10,19 @@ public class ShipCollision : MonoBehaviour
     public AudioClip dragSound;
     public float collisionHpLoss = 10;
     public float dragHpLoss = 5;
+    public int maxHp = 100;
+    public Slider hpSlider;
+    public Image hpSliderFill;
 
     public float shipHp = 100f;
+    private bool lowHpFlag = false;
     private bool isCrashing = false;
     private bool isDragging = false;
+
+    void Start()
+    {
+        shipHp = maxHp;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -67,11 +77,18 @@ public class ShipCollision : MonoBehaviour
 
     void ReduceHp(float amount)
     {
-        shipHp -= amount;
-        if (shipHp <= 0)
+        shipHp = Mathf.Max(shipHp - amount, 0);
+        hpSlider.value = shipHp / maxHp;
+
+        if (shipHp == 0)
         {
-            shipHp = 0;
+            hpSliderFill.enabled = false;
             GameOver();
+        }
+        else if (!lowHpFlag && shipHp <= maxHp/3)
+        {
+            lowHpFlag = true;
+            hpSliderFill.color = Color.red;
         }
     }
 
