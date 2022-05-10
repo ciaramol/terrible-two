@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Indoor");
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenOptions()
@@ -23,5 +24,10 @@ public class UIManager : MonoBehaviour
     {
         menu.SetActive(true);
         optionsDialogue.SetActive(false);
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
