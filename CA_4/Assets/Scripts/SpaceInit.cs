@@ -7,10 +7,12 @@ public class SpaceInit : MonoBehaviour
     public GameObject column;
     public int columnQuantity = 10;
     public float columnWidth = 100;
-
+    public AudioSource audioSource;
     
     void Start()
     {
+        audioSource.volume = GlobalVariables.musicVolume;
+
         Vector3 spawnCoordinates = new Vector3();
         for(int i = 0; i < columnQuantity; i++)
         {
