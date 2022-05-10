@@ -28,8 +28,11 @@ public class ShipCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        /// GOAL ///
+        if (other.gameObject.tag == "Goal") GameWon();
+
         /// LASER ///
-        if (other.gameObject.tag == "Laser")
+        else if (other.gameObject.tag == "Laser")
         {
             Destroy(other.gameObject);
             audioSource.PlayOneShot(laserHitSound);
@@ -103,6 +106,11 @@ public class ShipCollision : MonoBehaviour
             lowHpFlag = true;
             hpSliderFill.color = Color.red;
         }
+    }
+
+    void GameWon()
+    {
+        Debug.Log("Game Won!");
     }
 
     void GameOver()
