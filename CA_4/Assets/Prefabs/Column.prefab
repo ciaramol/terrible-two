@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2904757410279052249}
   - component: {fileID: 2904757410279052248}
   - component: {fileID: 2904757410279052229}
+  - component: {fileID: 4531146959232312264}
   m_Layer: 0
   m_Name: Column
   m_TagString: Crashable
@@ -354,3 +355,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4531146959232312264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904757410279052251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762c1525ef9013478566e08fd7a9490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columnLength: 100
+  keepPartiallyOpenBy: 5
+  minInactiveDuration: 5
+  maxInactiveDuration: 10
+  minActiveDuration: 5
+  maxActiveDuration: 10
+  minMoveDuration: 2
+  maxMoveDuration: 8

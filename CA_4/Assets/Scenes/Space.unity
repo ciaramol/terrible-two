@@ -365,7 +365,7 @@ MonoBehaviour:
   mouseSensitivityY: 100
   maxTurnSpeed: 100
   speed: 12
-  boostSpeedFactor: 5
+  boostSpeedFactor: 2
 --- !u!114 &179547560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,7 +850,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-76012
+  m_Name: pb_Mesh-1260
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   column: {fileID: 2904757410279052251, guid: 4e385673a62010a45a6f604e7bba5b17, type: 3}
-  columnQuantity: 50
+  columnQuantity: 25
   columnWidth: 100
 --- !u!4 &728034374
 Transform:
@@ -1972,7 +1972,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30408
+  m_Name: pb_Mesh17644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2136,7 +2136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30450
+  m_Name: pb_Mesh17688
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2486,7 +2486,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 4
   m_Range: 100
   m_SpotAngle: 75
   m_InnerSpotAngle: 7
