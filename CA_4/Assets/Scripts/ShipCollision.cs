@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class ShipCollision : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioClip laserHitSound;
     public AudioClip crashSound;
     public AudioClip dragSound;
+    public float laserHpLoss = 5;
     public float collisionHpLoss = 10;
     public float dragHpLoss = 5;
     public int maxHp = 100;
@@ -26,20 +28,31 @@ public class ShipCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Crashable") return;
-        isCrashing = true;
+        /// LASER ///
+        if (other.gameObject.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+            audioSource.PlayOneShot(laserHitSound);
+            ReduceHp(laserHpLoss);
+        }
 
-        // Play sound
-        audioSource.PlayOneShot(crashSound);
-        Invoke("DragStarts", 1.8f);
+        /// CRASHING ///
+        else if (other.gameObject.tag == "Crashable")
+        {
+            isCrashing = true;
 
-        // Subtract HP
-        ReduceHp(collisionHpLoss);
+            // Play sound
+            audioSource.PlayOneShot(crashSound);
+            Invoke("DragStarts", 1.8f);
 
-        // I tried adding an impulse in the opposite direction, but it doesn't seem to work, perhaps because of the character controller?
-        //Vector3 bounceDirecton = other.gameObject.transform.position - gameObject.transform.position;
-        //shipRigidbody.AddForce(bounceDirecton.normalized * 1000);
-        //Debug.Log(bounceDirecton.normalized * 1000);
+            // Subtract HP
+            ReduceHp(collisionHpLoss);
+
+            // I tried adding an impulse in the opposite direction, but it doesn't seem to work, perhaps because of the character controller?
+            //Vector3 bounceDirecton = other.gameObject.transform.position - gameObject.transform.position;
+            //shipRigidbody.AddForce(bounceDirecton.normalized * 1000);
+            //Debug.Log(bounceDirecton.normalized * 1000);
+        }
     }
 
     void OnTriggerStay(Collider other)

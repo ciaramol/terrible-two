@@ -14,11 +14,13 @@ public class TurretControl : MonoBehaviour
     GameObject clone;
     bool lastSpawn1 = false;
     Vector3 spawnPoint;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class TurretControl : MonoBehaviour
     {
         clone = Instantiate(laser, spawnPoint, turretHead.rotation);
         clone.GetComponent<Rigidbody>().AddForce(turretHead.forward * projectileSpeed);
+        audioSource.Play();
         lastSpawn1 = !lastSpawn1;
         Destroy(clone, 25);
     }
