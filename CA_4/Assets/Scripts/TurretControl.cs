@@ -10,6 +10,7 @@ public class TurretControl : MonoBehaviour
     public Transform turretHead, spawn1, spawn2;
     public GameObject laser;
     public float projectileSpeed = 1000f;
+    public float projectileTimeToLive = 5f;
     public float fireRate, nextFire;
     GameObject clone;
     bool lastSpawn1 = false;
@@ -51,6 +52,6 @@ public class TurretControl : MonoBehaviour
         clone.GetComponent<Rigidbody>().AddForce(turretHead.forward * projectileSpeed);
         audioSource.Play();
         lastSpawn1 = !lastSpawn1;
-        Destroy(clone, 25);
+        Destroy(clone, projectileTimeToLive);
     }
 }
