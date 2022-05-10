@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
-    public GameObject startButton;
-    public GameObject optionsButton;
-    public GameObject title;
+    public GameObject menu;
     public GameObject optionsDialogue;
 
     public void StartGame()
@@ -18,17 +15,13 @@ public class UIManager : MonoBehaviour
 
     public void OpenOptions()
     {
-        startButton.SetActive(false);
-        optionsButton.SetActive(false);
-        title.SetActive(false);
+        menu.SetActive(false);
         optionsDialogue.SetActive(true);
     }
 
     public void Return()
     {
-        startButton.SetActive(true);
-        optionsButton.SetActive(true);
-        title.SetActive(true);
+        menu.SetActive(true);
         optionsDialogue.SetActive(false);
     }
 }
