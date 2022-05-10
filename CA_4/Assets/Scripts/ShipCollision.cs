@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShipCollision : MonoBehaviour
 {
@@ -110,13 +111,17 @@ public class ShipCollision : MonoBehaviour
 
     void GameWon()
     {
-        Debug.Log("Game Won!");
+        SceneManager.LoadScene("Win");
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void GameOver()
     {
-        Debug.Log("Game Over");
+        SceneManager.LoadScene("Lose");
+        Cursor.lockState = CursorLockMode.None;
     }
+
+    //SceneManager.LoadScene("Indoor");
 
     //void OnCollisionEnter(Collision other)
     //{
