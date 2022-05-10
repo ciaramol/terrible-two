@@ -8,6 +8,8 @@ TagManager:
   - CinemachineTarget
   - Laser
   - Goal
+  - Cutscene1
+  - Seat
   layers:
   - Default
   - TransparentFX

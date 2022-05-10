@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
+using UnityEngine.SceneManagement;
 
 namespace StarterAssets
 {
@@ -265,10 +266,44 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+		private bool enteredCS1 = false;
+		private bool enteredSeatArea = false;
+		private bool canPilot = false;
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.CompareTag("Cutscene1"))
+			{
+				enteredCS1 = true;
+			}
+
+            if (other.CompareTag("Seat"))
+            {
+				enteredSeatArea = true;
+            }
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			if (other.CompareTag("Cutscene1"))
+			{
+				enteredCS1 = false;
+			}
+
+			if (other.CompareTag("Seat"))
+			{
+				enteredSeatArea = false;
+			}
+		}
 
 		void OnInteract()
 		{
-			cutscene.SetActive(true);
+			if (enteredCS1 == true)
+			{
+				cutscene.SetActive(true);
+				canPilot = true;
+			}
+			if(enteredSeatArea == true && canPilot == true) SceneManager.LoadScene("Space");
 		}
 	}
 }
